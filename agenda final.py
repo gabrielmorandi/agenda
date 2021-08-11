@@ -33,6 +33,7 @@ def consulta_contato(nome_contato):
         # se nao achar nenhum nome retornar contato nao encontrado 
     if pesquisa == []:
         pesquisa = 'Nome nao encontrado!'
+        print(pesquisa)
         # informar se foi ou nao encontrado
     else:
         print('Contato encontrado!\n', pesquisa)
@@ -100,6 +101,33 @@ def excluir_contato(nome):
                 print('Contato excluído com sucesso!')
         else:
             print('Contato NAO excluido!')
+# funcao que calcula quantas pessoas tem na agenda
+def pessoas_quantas():
+    print(len(agenda), 'contatos estão cadastrados na agenda!')
+# funcao que calcula a media das idades da agenda
+def idade_media():
+    idades = []
+    zx = 0
+    while zx != agenda:
+        idades = agenda[zx]['idade']
+        zx = zx + 1
+    print(idades)
+# funcao que mostra todas as mulheres da lista
+def contato_mulheres():
+    print()
+# funcao que mostra todos os homens da lista
+def contato_homens():
+    print()
+# funcao que mostra todos os contatos acima de determinada idade
+def contato_idade(idade):
+    pesquisa = [p for p in agenda if p['idade'] >= idade]
+    if len(pesquisa) == 0:
+        print('Nenhum contato com ou acida da idade expecificada foi encontrado!')
+    elif len(pesquisa) > 0:
+        print('Os contato encontrados foram: \n', pesquisa)
+# funcao que mostra todos os emails cadastrados 
+def contato_email():
+    print()
 # menu
 while a == 0:
     print('========================================================')
@@ -136,3 +164,17 @@ while a == 0:
     elif escolha == 4:
         nome_contato = input('Informe o nome do contato que deseja excluir: ')
         excluir_contato(nome_contato)
+    elif escolha == 5:
+        pessoas_quantas()
+    elif escolha == 6:
+        idade_media()
+    elif escolha == 7:
+        contato_mulheres()
+    elif escolha == 8:
+        contato_homens()
+    elif escolha == 9:
+        idade = int(input('Informe a idade minima que deseja pesquisar (sera exibida contatos com a idade igual ou maior): '))
+        contato_idade(idade)
+    elif escolha == 10:
+        contato_email()
+    
