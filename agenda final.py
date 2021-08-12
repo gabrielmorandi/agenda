@@ -2,6 +2,7 @@
 #Gustavo Paixão Machado - 202040602016
 
 #criação das listas e dos dicionários e variaveis
+import pprint
 agenda = [{'nome': 'Gustavo Paixao', 'email': 'gustavop@gmail.com', 'telefone': 949999999, 'sexo': 'm', 'idade': 19}, {'nome': 'Gabriel', 'email': 'gariel@gmail.com', 'telefone': 94977777777, 'sexo': 'm', 'idade': 19}, {'nome': 'Gustavo Paixao', 'email': 'gustavoc@gmail.com', 'telefone': 9488888888, 'sexo': 'f', 'idade': 9}]
 dados_cadastro = {}
 busca = []
@@ -103,31 +104,41 @@ def excluir_contato(nome):
             print('Contato NAO excluido!')
 # funcao que calcula quantas pessoas tem na agenda
 def pessoas_quantas():
+    print()
     print(len(agenda), 'contatos estão cadastrados na agenda!')
 # funcao que calcula a media das idades da agenda
 def idade_media():
-    idades = []
+    soma = 0
     zx = 0
-    while zx != agenda:
+    while zx != len(agenda):
         idades = agenda[zx]['idade']
+        soma = soma + idades
         zx = zx + 1
-    print(idades)
+    print(f'A medias das idades e de: {soma/len(agenda)}')
 # funcao que mostra todas as mulheres da lista
 def contato_mulheres():
-    print()
+    pesquisa = [p for p in agenda if p['sexo'] == 'f']
+    print("Existem os seguintes contatos do sexo feminino: \n")
+    print(pesquisa)
 # funcao que mostra todos os homens da lista
 def contato_homens():
-    print()
+    pesquisa = [p for p in agenda if p['sexo'] == 'm']
+    print("Existem os seguintes contatos do sexo masculino: \n")
+    print(pesquisa)
 # funcao que mostra todos os contatos acima de determinada idade
 def contato_idade(idade):
     pesquisa = [p for p in agenda if p['idade'] >= idade]
     if len(pesquisa) == 0:
-        print('Nenhum contato com ou acida da idade expecificada foi encontrado!')
+        print('Nenhum contato com ou acima da idade expecificada foi encontrado!')
     elif len(pesquisa) > 0:
         print('Os contato encontrados foram: \n', pesquisa)
 # funcao que mostra todos os emails cadastrados 
 def contato_email():
-    print()
+    print('Esses são os emails cadastrados na agenda: \n')
+    i = 0
+    while i != len(agenda):
+        print(agenda[i]['email'])
+        i = i+1
 # menu
 while a == 0:
     print('========================================================')
@@ -159,10 +170,10 @@ while a == 0:
     elif escolha == 3:
         nome_contato = input('========================================================\nInforme o nome do contato que voce deseja alterar: ').strip()
         while oque != 'nome' and oque != 'email' and oque != 'telefone' and oque != 'sexo' and oque != 'idade':
-            oque = input('Informe oque deseja alterar (nome, email, telefone, sexo, idade): ')
+            oque = input('========================================================\nInforme oque deseja alterar (nome, email, telefone, sexo, idade): ')
         altera_contato(nome_contato, oque)
     elif escolha == 4:
-        nome_contato = input('Informe o nome do contato que deseja excluir: ')
+        nome_contato = input('========================================================\nInforme o nome do contato que deseja excluir: ')
         excluir_contato(nome_contato)
     elif escolha == 5:
         pessoas_quantas()
@@ -173,8 +184,7 @@ while a == 0:
     elif escolha == 8:
         contato_homens()
     elif escolha == 9:
-        idade = int(input('Informe a idade minima que deseja pesquisar (sera exibida contatos com a idade igual ou maior): '))
+        idade = int(input('========================================================\nInforme a idade minima que deseja pesquisar (sera exibida contatos com a idade igual ou maior): '))
         contato_idade(idade)
     elif escolha == 10:
         contato_email()
-    
